@@ -14,3 +14,12 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
+
+class Sampler():
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X, y):
+        X_rus, y_rus = rus.fit_sample(features_df, target_df)
+        return pd.DataFrame(X_rus), y_rus
