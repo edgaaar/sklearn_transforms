@@ -1,4 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+import pandas as pd
+from sklearn.utils import shuffle
 
 
 # All sklearn Transforms must have the `transform` and `fit` methods
@@ -20,12 +22,12 @@ class OverSample(BaseEstimator, TransformerMixin):
         self.column = column
         
     def over_excelent(self, dataset, col):
-        intermed = dataset[dataset[col]=='EXCELENTE']
+        intermed = dataset[dataset[col]=='Sospechoso']
         dataset = pd.concat([dataset, intermed])
         return dataset
     
     def over_good(self, dataset, col):
-        intermed = dataset[dataset[col]=='MUITO_BOM']
+        intermed = dataset[dataset[col]=='Aceptado']
         dataset = pd.concat([dataset, intermed])
         return dataset
     
